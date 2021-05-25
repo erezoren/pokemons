@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Pokemons</title>
+</head>
+<body>
+<h1>All Pokemons</h1>
+
+<div id="all_pokes"/>
+
+
+</body>
+
+<script>
+
+  window.onload = (event) => {
+    console.log("Loading all pokemon data....")
+    loadAllPokes();
+  };
+
+  //TODO: in the loop for each pokemon create the html elment that displays it and append to container
+  async function loadAllPokes() {
+    try {
+      let container = document.querySelector("#all_pokes")
+      let all_pokes = await fetch('http://localhost:3000/api')
+      const json = await all_pokes.json();
+      var ul = document.createElement('ul');
+      json.forEach(p => {
+        {
+
+          var a = document.createElement('a');
+          var linkText = document.createTextNode(p.name);
+          a.appendChild(linkText);
+          a.title = p.name;
+          a.href = `./show_pokemon.html?id=${p.id}`;
+
+          let li = document.createElement('li');
+          li.appendChild(a)
+          ul.appendChild(li);
+        }
+      })
+
+      container.appendChild(ul);
+    } catch (err) {
+      alert(err)
+    }
+
+  }
+
+</script>
+</html>

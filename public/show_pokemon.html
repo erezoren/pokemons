@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show Pokemon</title>
+</head>
+<body>
+<a href="./">Home</a>
+<div id="poke_details"/>
+</body>
+<script>
+
+  window.onload = (event) => {
+    let url = new URL(window.location.href);
+    let id = url.searchParams.get("id");
+    if (id) {
+      console.log(`Loading pokemon data for pokemon ${id}`)
+      loadPoke(id);
+    } else {
+      alert("Not ID found")
+    }
+
+  };
+
+  //TODO: in the loop for each pokemon create the html elment that displays it and append to container
+  async function loadPoke(id) {
+    try {
+      let container = document.querySelector("#poke_details")
+      let poke = await fetch(`http://localhost:3000/api/${id}`)
+      const json = await poke.json();
+      const jsonElement = json[0];
+      //Parse the image and details out and render in html
+
+      var para = document.createElement("h2");
+      para.innerText = `Name: ${jsonElement.name}`;
+      var img = document.createElement("img");
+      const image_id = jsonElement.id+'';
+      img.src = `http://localhost:3000/images/${image_id.padStart(3, '0')}.png`; //Adding leading zeros to image name
+      container.appendChild(para);
+      container.appendChild(img);
+    } catch (err) {
+      alert(err)
+    }
+
+  }
+
+</script>
+</html>
