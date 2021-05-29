@@ -25,12 +25,12 @@
       let container = document.querySelector("#all_pokes")
       let all_pokes = await fetch('http://localhost:3000/api')
       const json = await all_pokes.json();
-      var ul = document.createElement('ul');
+      let ul = document.createElement('ul');
       json.forEach(p => {
         {
 
-          var a = document.createElement('a');
-          var linkText = document.createTextNode(p.name);
+          let a = document.createElement('a');
+          let linkText = document.createTextNode(p.name);
           a.appendChild(linkText);
           a.title = p.name;
           a.href = `./show_pokemon.html?id=${p.id}`;
