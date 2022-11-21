@@ -26,7 +26,7 @@
   async function loadPoke(id) {
     try {
       let container = document.querySelector("#poke_details")
-      let poke = await fetch(`http://localhost:8080/api/${id}`)
+      let poke = await fetch(`https://pokemons-3ti5.onrender.com/api/${id}`)
       const json = await poke.json();
       const jsonElement = json[0];
       //Parse the image and details out and render in html
