@@ -26,7 +26,7 @@
   async function loadPoke(id) {
     try {
       let container = document.querySelector("#poke_details")
-      let poke = await fetch(`localhost:3000/api/${id}`)
+      let poke = await fetch(`https://pokemons-3ti5.onrender.com/api/${id}`)
       const json = await poke.json();
       const jsonElement = json[0];
       //Parse the image and details out and render in html
@@ -35,7 +35,7 @@
       para.innerText = `Name: ${jsonElement.name}`;
       let img = document.createElement("img");
       const image_id = jsonElement.id+'';
-      img.src = `localhost:3000/images/${image_id.padStart(3, '0')}.png`; //Adding leading zeros to image name
+      img.src = `https://pokemons-3ti5.onrender.com/images/${image_id.padStart(3, '0')}.png`; //Adding leading zeros to image name
       container.appendChild(para);
       container.appendChild(img);
     } catch (err) {
