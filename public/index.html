@@ -23,7 +23,7 @@
   async function loadAllPokes() {
     try {
       let container = document.querySelector("#all_pokes")
-      let all_pokes = await fetch('http://localhost/api')
+      let all_pokes = await fetch('http://localhost:8080/api')
       const json = await all_pokes.json();
       let ul = document.createElement('ul');
       json.forEach(p => {
