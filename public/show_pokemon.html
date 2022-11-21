@@ -17,7 +17,7 @@
       console.log(`Loading pokemon data for pokemon ${id}`)
       loadPoke(id);
     } else {
-      alert("Not ID found")
+      alert("No ID found")
     }
 
   };
@@ -26,7 +26,7 @@
   async function loadPoke(id) {
     try {
       let container = document.querySelector("#poke_details")
-      let poke = await fetch(`http://localhost:3000/api/${id}`)
+      let poke = await fetch(`http://localhost/api/${id}`)
       const json = await poke.json();
       const jsonElement = json[0];
       //Parse the image and details out and render in html
